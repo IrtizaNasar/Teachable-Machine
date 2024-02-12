@@ -22,11 +22,11 @@ function setup() {
   // Create the video
   video = createCapture(VIDEO);
   video.hide();
-  // STEP 2: Start classifying
+  // STEP 3: Start classifying
   classifyVideo();
 }
 
-// STEP 2 classify the videeo!
+// STEP 2 Classify the video
 function classifyVideo() {
   classifier.classify(video, gotResults);
 }
@@ -37,7 +37,7 @@ function draw() {
   // Draw the video on canvas
   image(video, 0, 0);
 
-  // STEP 4: Draw the label on canvas
+  // STEP 5: Draw the label on canvas
   textSize(32);
   textAlign(CENTER, CENTER);
   fill(255);
@@ -46,7 +46,7 @@ function draw() {
   
 
 
-  // STEP 5: Insert your model labels and instructions 
+  // STEP 6: Insert your model labels and instructions 
   if (label == "") {
       //Instruction to do something
   } else if (label == "") {
@@ -54,7 +54,7 @@ function draw() {
   } 
 }
 
-// STEP 3: Get the classification!
+// STEP 4: Get the classification!
 function gotResults(error, results) {
   // Something went wrong!
   if (error) {
