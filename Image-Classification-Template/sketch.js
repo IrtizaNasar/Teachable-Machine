@@ -7,9 +7,12 @@
 let video;
 // For displaying the label
 let label = "waiting...";
+
 // The classifier
 let classifier;
 let modelURL = ''; // Replace with model URL
+
+
 
 // STEP 1: Load the model! Before loading anything else 
 function preload() {
@@ -19,9 +22,11 @@ function preload() {
 
 function setup() {
   createCanvas(640, 520);
+
   // Create the video
   video = createCapture(VIDEO);
   video.hide();
+
   // STEP 3: Start classifying
   classifyVideo();
 }
@@ -63,6 +68,6 @@ function gotResults(error, results) {
   }
   // Store the label and classify again!
   label = results[0].label; // By accessing results[0].label, we are retrieving the label with the highest confidence score from the array and assigning it to the label variable. 
-  console.log(results[0]);
+  // console.log(results[0]);
   classifyVideo();
 }
