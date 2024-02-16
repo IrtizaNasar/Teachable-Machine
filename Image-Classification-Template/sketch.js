@@ -10,7 +10,7 @@ let label = "waiting...";
 
 // The classifier
 let classifier;
-let modelURL = ''; // Replace with model URL
+let modelURL = 'https://teachablemachine.withgoogle.com/models/UHRXjQM2L/'; // Replace with model URL
 
 
 
@@ -19,6 +19,8 @@ function preload() {
   classifier = ml5.imageClassifier(modelURL + 'model.json');
 }
 
+let x = 50;
+let y = 50;
 
 function setup() {
   createCanvas(640, 520);
@@ -49,13 +51,15 @@ function draw() {
   text(label, width / 2, height - 16);
   fill(0);
   
-
+ellipse(x, y, 30)
 
   // STEP 6: Insert your model labels and instructions 
-  if (label == "") {
+  if (label == "Bottle" && confidence>0.9) {
       //Instruction to do something
-  } else if (label == "") {
+      x = x+1
+  } else if (label == "No Bottle" && confidence>0.9) {
     //Instruction to do something
+    x = x-1
   } 
 }
 
@@ -69,5 +73,7 @@ function gotResults(error, results) {
   // Store the label and classify again!
   label = results[0].label; // By accessing results[0].label, we are retrieving the label with the highest confidence score from the array and assigning it to the label variable. 
   // console.log(results[0]);
+  
   classifyVideo();
+  confidence = nf(results[0].confidence, 0,2);
 }
