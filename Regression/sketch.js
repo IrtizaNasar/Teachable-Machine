@@ -3,8 +3,8 @@ let predictor;
 let video;
 let value = 0;
 let song;
+let speed;
 let sliderRate;
-let sliderVolume
 let addButton;
 let trainButton;
 
@@ -57,8 +57,6 @@ function setup() {
     console.log(sliderRate.value( ))
   })
 
-  // sliderVolume = createSlider(0, 1, 0, 0.1);
-
   addButton = createButton('Add Example');
   addButton.mousePressed(function() {
     predictor.addImage(sliderRate.value());
@@ -70,9 +68,6 @@ function setup() {
     predictor.train(whileTraining);
   });  
 
- 
- 
-  // createCanvas(710, 400);
 
   // Loop the sound forever
   // (well, at least until stop() is called)
@@ -80,32 +75,23 @@ function setup() {
 }
 
 function draw() {
-  // background(200);
+  
   background(0);
   image(video, 0, 0, 640, 480);
 
   // Set the volume to a range between 0 and 1.0
-  let volume = map(mouseX, 0, width, 0, 1);
-  volume = constrain(volume, 0, 1);
   song.amp(1);
-  // song.amp(volume);
+ 
 
   // Set the rate to a range between 0.1 and 4
   // Changing the rate alters the pitch
-  let speed = map(mouseY, 0.1, height, 0, 2);
-  speed = constrain(speed, 0.01, 4);
-  song.rate(value);
+  speed = constrain(value, 0.01, 4);
+  song.rate(speed);
+  console.log("rate", speed)
 
   fill(255);
   textSize(16);
   text(value, 30, height - 10);
-  // song.rate(speed);
 
-  // Draw some circles to show what is going on
-  // stroke(0);
-  // fill(51, 100);
-  // ellipse(mouseX, 100, 48, 48);
-  // stroke(0);
-  // fill(51, 100);
-  // ellipse(100, mouseY, 48, 48);
+
 }
